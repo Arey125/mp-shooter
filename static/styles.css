@@ -1,0 +1,63 @@
+span.blue {
+  color: #63b3ed;
+}
+
+.c-8 {
+  color: #2c5282;
+}
+
+.c-9 {
+  color: #2a4365;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.description-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+aside.sidebar {
+  background-color: #edf2f7;
+  flex: 0 0 250px;
+  padding: 70px 10px 10px 70px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-size: 18px;
+
+  label {
+    color: #4299e1;
+    margin-bottom: 20px;
+  }
+
+  nav {
+    a {
+      color: #2c5282;
+      text-decoration: none;
+      margin-bottom: 10px;
+
+      span {
+        position: relative;
+        top: 2px;
+        margin-right: 10px;
+        fill: #2c5282;
+      }
+    }
+  }
+}

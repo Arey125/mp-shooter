@@ -1,0 +1,93 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #2c5282;
+  line-height: 1.5;
+}
+
+header {
+  background-color: #2d3748;
+  color: #fff;
+  font-size: 20px;
+  padding: 30px 0 30px 70px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+main {
+  padding: 30px 120px 50px 120px;
+  position: relative;
+  overflow: auto;
+  flex: 1 1 auto;
+}
+
+div.content {
+  display: flex;
+  position: relative;
+  height: calc(100vh - 90px);
+}
+
+button,
+.button,
+input[type="submit"]
+{
+  background-color: #2a4365;
+  color: #fffcfe;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: 0;
+}
+
+form .card {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #2a4365;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2a4365;
+}
+
+fieldset {
+  border: 0;
+}
+
+fieldset,
+.card {
+  background-color: #edf3f8;
+  border-radius: 5px;
+  padding: 10 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #2a4365;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #2a4365;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
