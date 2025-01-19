@@ -22,7 +22,7 @@ func main() {
     fileServer := http.FileServer(http.Dir("./static"))
     mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 
-    game := game.Game{}
+    game := game.NewGame()
     game.RegisterRoutes(mux)
 
     server := http.Server{
