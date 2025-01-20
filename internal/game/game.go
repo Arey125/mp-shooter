@@ -1,8 +1,13 @@
 package game
 
-type Player struct {
+type Position struct {
     X float64 `json:"x"`
     Y float64 `json:"y"`
+}
+
+type Player struct {
+    position Position
+    keys map[string]bool
 }
 
 type Game struct {
@@ -20,27 +25,46 @@ func NewGame() *Game {
 }
 
 func (g *Game) addPlayer(c *Client) {
-    g.players[c] = &Player{}
+    g.players[c] = &Player{keys: make(map[string]bool)}
 }
 
 func (g *Game) removePlayer(c *Client) {
     delete(g.players, c)
 }
 
-func (g *Game) updateState(c Command) map[string]any {
+func (g *Game) updateState(c Command) {
     commandType := c.message["type"].(string)
-    if commandType == "move" {
-        dx := c.message["dx"].(float64)
-        dy := c.message["dy"].(float64)
-
-        player := g.players[c.client]
-        player.X += dx
-        player.Y += dy
+    if commandType == "keyDown" {
+        g.players[c.client].keys[c.message["key"].(string)] = true
+        return;
     } 
+    if commandType == "keyUp" {
+        g.players[c.client].keys[c.message["key"].(string)] = false
+        return;
+    }
+}
+
+func (g *Game) getState() map[string]any {
+    const SPEED = 5
+    for i := range g.players {
+        keys := g.players[i].keys
+        if keys["W"] {
+            g.players[i].position.Y += SPEED
+        }
+        if keys["A"] {
+            g.players[i].position.X -= SPEED
+        }
+        if keys["S"] {
+            g.players[i].position.Y -= SPEED
+        }
+        if keys["D"] {
+            g.players[i].position.X += SPEED
+        }
+    }
 
     state := make(map[string]any)
     for client, player := range g.players {
-        state[client.conn.RemoteAddr().String()] = player
+        state[client.conn.RemoteAddr().String()] = player.position
     }
     return state
 }

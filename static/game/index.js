@@ -28,16 +28,21 @@ socket.addEventListener("message", (e) => {
 window.addEventListener("keydown", (e) => {
   switch (e.code) {
     case "KeyW":
-      socket.send(JSON.stringify({ type: "move", dx: 0, dy: 10 }))
-      break
     case "KeyS":
-      socket.send(JSON.stringify({ type: "move", dx: 0, dy: -10 }))
-      break
     case "KeyA":
-      socket.send(JSON.stringify({ type: "move", dx: -10, dy: 0 }))
-      break
     case "KeyD":
-      socket.send(JSON.stringify({ type: "move", dx: 10, dy: 0 }))
+      socket.send(JSON.stringify({ type: "keyDown", key: e.code[3] }))
+      break
+  }
+})
+
+window.addEventListener("keyup", (e) => {
+  switch (e.code) {
+    case "KeyW":
+    case "KeyS":
+    case "KeyA":
+    case "KeyD":
+      socket.send(JSON.stringify({ type: "keyUp", key: e.code[3] }))
       break
   }
 })
